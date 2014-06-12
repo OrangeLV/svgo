@@ -74,9 +74,11 @@ exports.fn = function(data, params) {
 };
 
 function cleanUse(item, params, invertY, flipY) {
-    var y = parseFloat(item.attr('y').value);
-    var height = parseFloat(item.attr('height').value);
-    item.attr('y').value = -y - height;
+    if(item.hasAttr('y')) {
+        var y = parseFloat(item.attr('y').value);
+        var height = parseFloat(item.attr('height').value);
+        item.attr('y').value = -y - height;
+    }
 
     // transform
     if (!item.hasAttr('transform')) {
@@ -115,7 +117,6 @@ function cleanSymbol(item, params) {
 };
 
 function cleanGraphics(item, params) {
-    console.log('cleanGraphics')
     if (
         item.isElem(pathElems) &&
         item.hasAttr('d')
@@ -150,8 +151,8 @@ function cleanGraphics(item, params) {
 
 
     if ( item.isElem('line') ) {
-        item.attr('y1').value = -parseFloat(item.attr('y1').value);
-        item.attr('y2').value = -parseFloat(item.attr('y2').value);
+        item.hasAttr('y1') && (item.attr('y1').value = -parseFloat(item.attr('y1').value));
+        item.hasAttr('y2') && (item.attr('y2').value = -parseFloat(item.attr('y2').value));
     }
 
     //TODO otherbasic shapes
