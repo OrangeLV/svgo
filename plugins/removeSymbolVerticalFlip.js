@@ -94,6 +94,7 @@ function cleanUse(item, params, invertY, flipY) {
             transform.data = transformsMultiply([transform, INVERT_Y_TRANSFORM]).data;
         }
         if(flipY) {
+            transform.data[1] *= -1;
             transform.data[2] *= -1;
             transform.data[5] *= -1;
         };
