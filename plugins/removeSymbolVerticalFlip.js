@@ -35,8 +35,11 @@ exports.fn = function(data, params) {
             var _isRootLevel = isRootLevel;
 
             if (item.isElem('use')) {
-                cleanUse(item, params, _isRootLevel, !_isRootLevel);
+                cleanInstance(item, params, _isRootLevel, !_isRootLevel);
                 _isRootLevel = false;
+            }
+            if (item.isElem('text')) {
+                cleanInstance(item, params, _isRootLevel, !_isRootLevel);
             }
             if (item.isElem('symbol')) {
                 _isRootLevel = false;
@@ -73,7 +76,7 @@ exports.fn = function(data, params) {
     return data;
 };
 
-function cleanUse(item, params, invertY, flipY) {
+function cleanInstance(item, params, invertY, flipY) {
     if(item.hasAttr('y')) {
         var y = parseFloat(item.attr('y').value);
         var height = parseFloat(item.attr('height').value);
@@ -133,8 +136,8 @@ function cleanGraphics(item, params) {
     }
 
     if ((
-            item.isElem('polyline') ||
-            item.isElem('polygon')
+        item.isElem('polyline') ||
+        item.isElem('polygon')
         ) &&
         item.hasAttr('points')
     ) {
