@@ -155,7 +155,7 @@ function cleanGraphics(item, params) {
     }
 
 
-    if ( item.isElem('line') ) {
+    if ( item.isElem('line') || item.isElem('linearGradient') ) {
         item.hasAttr('y1') && (item.attr('y1').value = -parseFloat(item.attr('y1').value));
         item.hasAttr('y2') && (item.attr('y2').value = -parseFloat(item.attr('y2').value));
     }
