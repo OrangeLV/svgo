@@ -160,6 +160,10 @@ function cleanGraphics(item, params) {
         item.hasAttr('y2') && (item.attr('y2').value = -parseFloat(item.attr('y2').value));
     }
 
+    if ( item.isElem('ellipse') || item.isElem('radialGradient') ) {
+        item.hasAttr('cy') && (item.attr('cy').value = -parseFloat(item.attr('cy').value));
+    }
+
     //TODO otherbasic shapes
 };
 
