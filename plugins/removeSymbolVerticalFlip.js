@@ -164,6 +164,18 @@ function cleanGraphics(item, params) {
         item.hasAttr('cy') && (item.attr('cy').value = -parseFloat(item.attr('cy').value));
     }
 
+    if ( item.isElem('image') ) {
+        var transforms = transform2js(item.attr('transform').value);
+        transforms.forEach(function(transform) {
+            if(transform.name !== 'matrix') {
+                return;
+            }
+            transform.data[3] *= -1;
+            transform.data[5] *= -1;
+        })
+        item.attr('transform').value = js2transform(transforms, params);
+    }
+
     //TODO otherbasic shapes
 };
 
