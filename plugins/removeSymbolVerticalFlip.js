@@ -164,6 +164,10 @@ function cleanGraphics(item, params) {
         item.hasAttr('cy') && (item.attr('cy').value = -parseFloat(item.attr('cy').value));
     }
 
+    if ( item.isElem('rect') ) {
+        item.hasAttr('y') && (item.attr('y').value = -parseFloat(item.attr('height').value));
+    }
+
     if ( item.isElem('image') ) {
         var transforms = transform2js(item.attr('transform').value);
         transforms.forEach(function(transform) {
